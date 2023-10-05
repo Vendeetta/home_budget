@@ -1,0 +1,35 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet id="create_user_id_sequence" author="Evgeniy_Gerasimov">
+        <createSequence sequenceName="user_id_seq" minValue="1" startValue="1" incrementBy="1"/>
+    </changeSet>
+    <!--  Создание таблицы home_budget.user  -->
+    <changeSet id="create_user_table" author="Evgeniy_Gerasimov">
+        <createTable schemaName="home_budget" tableName="user"
+                     remarks="Таблица для хранения юзеров">
+            <column name="user_id" type="int" remarks="Идентификатор пользователя"
+                    defaultValueSequenceNext="user_id_seq">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="username" type="text" remarks="Имя пользователя">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="text" remarks="Пароль пользователя">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="text" remarks="Электронная почта пользователя">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="create_user_constraints" author="Evgeniy_Gerasimov">
+        <sqlFile path="/sql/add_user_constraints.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+    <!--  Создание индексов для таблицы client.client  -->
+    <changeSet id="create_user_indexes" author="Evgeniy_Gerasimov">
+        <createIndex tableName="user" indexName="user_email_idx">
+            <column name="email"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>
