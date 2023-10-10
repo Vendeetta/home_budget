@@ -6,8 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.mapstruct.Builder;
 
 /**
  * Сущность описывает категорию бюджета, по которым могут приходить или уходить деньги.
@@ -17,6 +20,8 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "Category", schema = "home_budget")
 public class Category {
 
@@ -24,8 +29,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
     private Integer categoryId;
-    @Column(name = "limit")
-    private Integer limit;
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "category_limit")
+    private Integer categoryLimit;
+    @Column(name = "title", nullable = false)
+    private String title;
 }
