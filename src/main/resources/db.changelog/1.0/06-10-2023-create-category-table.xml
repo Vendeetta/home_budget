@@ -1,0 +1,26 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet id="create_category_id_sequence" author="Evgeniy_Gerasimov">
+        <createSequence sequenceName="category_id_seq" minValue="1" startValue="1" incrementBy="1"/>
+    </changeSet>
+    <!--  Создание таблицы home_budget.category  -->
+    <changeSet id="create_category_table" author="Evgeniy_Gerasimov">
+        <createTable schemaName="home_budget" tableName="category"
+                     remarks="Таблица для хранения категорий">
+            <column name="category_id" type="int" remarks="Идентификатор категории"
+                    defaultValueSequenceNext="category_id_seq">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="category_limit" type="int" remarks="Лимит по категории">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="text" remarks="Наименование категории">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="create_category_constraints" author="Evgeniy_Gerasimov">
+        <sqlFile path="/sql/add_category_constraints.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+</databaseChangeLog>

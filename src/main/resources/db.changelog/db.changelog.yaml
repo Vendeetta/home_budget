@@ -1,3 +1,7 @@
 databaseChangeLog:
   - include:
-      file: db.changelog/1.0/06-10-2023-create-tables.xml
+      file: db.changelog/1.0/06-10-2023-create-user-table.xml
+  - include:
+      file: db.changelog/1.0/06-10-2023-create-category-table.xml
+  - include:
+      file: db.changelog/1.0/06-10-2023-create-operation-table.xml
