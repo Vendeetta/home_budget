@@ -1,8 +1,12 @@
 package ru.gerasimov.home_budget.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Objects;
 
 /**
  * Сущность описывает финансовую операцию.
@@ -12,7 +16,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "Operatiion", schema = "home_budget")
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "Operation", schema = "home_budget")
 public class Operation {
 
     @Id
@@ -29,4 +35,19 @@ public class Operation {
     private Integer amount;
     @Column(name = "comment")
     private String comment;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Operation operation = (Operation) o;
+
+        return Objects.equals(operationId, operation.operationId);
+    }
+
+    @Override
+    public int hashCode() {
+        return operationId != null ? operationId.hashCode() : 0;
+    }
 }
