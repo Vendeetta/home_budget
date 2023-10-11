@@ -10,7 +10,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.mapstruct.Builder;
+import lombok.ToString;
+
+import java.util.Objects;
 
 /**
  * Сущность описывает категорию бюджета, по которым могут приходить или уходить деньги.
@@ -20,6 +22,7 @@ import org.mapstruct.Builder;
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Category", schema = "home_budget")
@@ -33,4 +36,19 @@ public class Category {
     private Integer categoryLimit;
     @Column(name = "title", nullable = false)
     private String title;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Category category = (Category) o;
+
+        return Objects.equals(categoryId, category.categoryId);
+    }
+
+    @Override
+    public int hashCode() {
+        return categoryId != null ? categoryId.hashCode() : 0;
+    }
 }

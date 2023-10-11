@@ -15,10 +15,17 @@
             <column name="category_limit" type="int" remarks="Лимит по категории">
                 <constraints nullable="false"/>
             </column>
+            <column name="user_id" type="int" remarks="Принадлежность пользователю">
+            </column>
             <column name="title" type="text" remarks="Наименование категории">
                 <constraints nullable="false"/>
             </column>
         </createTable>
+    </changeSet>
+    <changeSet id="add_foreign_key_category" author="Evgeniy_Gerasimov">
+        <addForeignKeyConstraint baseTableName="category" baseColumnNames="user_id"
+                                 constraintName="fk_category_user" referencedTableName="user"
+                                 referencedColumnNames="user_id"/>
     </changeSet>
     <changeSet id="create_category_constraints" author="Evgeniy_Gerasimov">
         <sqlFile path="/sql/add_category_constraints.sql" relativeToChangelogFile="true"/>
