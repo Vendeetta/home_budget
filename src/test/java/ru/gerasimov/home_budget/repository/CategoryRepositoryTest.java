@@ -32,8 +32,8 @@ class CategoryRepositoryTest {
         Category category2 = new Category(null, 200, "test2");
         Category category3 = new Category(null, 200, "test3");
         //when Сохраняем три сущности.
-        categoryRepository.saveAll(List.of(category1, category2, category3));
+        List<Category> categories = categoryRepository.saveAll(List.of(category1, category2, category3));
         //then Ожидаем получить из БД три сущности.
-        assertEquals(3, categoryRepository.findAll().size());
+        assertEquals(3, categories.size());
     }
 }
