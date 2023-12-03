@@ -1,11 +1,6 @@
 package ru.gerasimov.home_budget.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,15 +11,15 @@ import java.util.Objects;
 
 /**
  * Сущность описывает категорию бюджета, по которым могут приходить или уходить деньги.
- * <p>
- * author Evgeniy_Gerasimov
+ *
+ * @author Evgeniy Gerasimov.
  */
 @Entity
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Table(name = "Category", schema = "home_budget")
 public class Category {
 
@@ -36,6 +31,15 @@ public class Category {
     private Integer categoryLimit;
     @Column(name = "title", nullable = false)
     private String title;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    public Category(Integer categoryId, Integer categoryLimit, String title) {
+        this.categoryId = categoryId;
+        this.categoryLimit = categoryLimit;
+        this.title = title;
+    }
 
     @Override
     public boolean equals(Object o) {

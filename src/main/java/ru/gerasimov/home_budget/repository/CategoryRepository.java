@@ -5,8 +5,8 @@ import ru.gerasimov.home_budget.model.Category;
 
 /**
  * Репозиторий для работы с сущностью Category.
- * <p>
- * author Evgeniy_Gerasimov
+ *
+ *@author Evgeniy Gerasimov.
  */
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 }

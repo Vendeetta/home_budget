@@ -5,8 +5,8 @@ import ru.gerasimov.home_budget.model.User;
 
 /**
  * Репозиторий для работы с сущностью User.
- * <p>
- * author Evgeniy_Gerasimov
+ *
+ *@author Evgeniy Gerasimov.
  */
 public interface UserRepository extends JpaRepository<User, Integer> {
 }

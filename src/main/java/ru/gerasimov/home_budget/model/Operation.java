@@ -11,7 +11,7 @@ import java.util.Objects;
 /**
  * Сущность описывает финансовую операцию.
  *
- * author Evgeniy_Gerasimov
+ * @author Evgeniy Gerasimov.
  */
 @Entity
 @Getter

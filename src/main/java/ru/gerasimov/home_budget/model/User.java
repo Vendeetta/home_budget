@@ -11,8 +11,8 @@ import java.util.Set;
 
 /**
  * Сущность описывает пользователя.
- * <p>
- * author Evgeniy_Gerasimov
+ *
+ * @author Evgeniy Gerasimov.
  */
 @Entity
 @Getter
@@ -36,6 +36,10 @@ public class User {
     @JoinColumn(name = "user_id")
     @Column(name = "category")
     private Set<Category> category;
+
+    public User(Integer userId) {
+        this.userId = userId;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -16,6 +16,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="user_id" type="int" remarks="Принадлежность пользователю">
+                <constraints nullable="false"/>
             </column>
             <column name="title" type="text" remarks="Наименование категории">
                 <constraints nullable="false"/>

@@ -15,3 +15,12 @@ spring:
     enabled: true
     change-log: classpath:db.changelog/db.changelog.yaml
     default-schema: home_budget
+api:
+  properties:
+    info:
+      title: "Home budget app."
+      description: "Pet project for practice"
+      version: "1.0"
+springdoc:
+  api-docs:
+    path: /swagger-ui.html

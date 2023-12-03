@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import ru.gerasimov.home_budget.TestContainerConfig;
 import ru.gerasimov.home_budget.model.Category;
+import ru.gerasimov.home_budget.model.User;
 
 import java.util.List;
 
@@ -34,6 +35,7 @@ class CategoryRepositoryTest {
         //when Сохраняем три сущности.
         categoryRepository.saveAll(List.of(category1, category2, category3));
         //then Ожидаем получить из БД три сущности.
-        assertEquals(3, categoryRepository.findAll().size());
+        List<Category> all = categoryRepository.findAll();
+        assertEquals(3, all.size());
     }
 }
