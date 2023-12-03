@@ -6,7 +6,7 @@ import ru.gerasimov.home_budget.model.Operation;
 /**
  * Репозиторий для работы с сущностью Operation.
  *
- *@author Evgeniy Gerasimov.
+ * @author Evgeniy Gerasimov.
  */
 public interface OperationRepository extends JpaRepository<Operation, Integer> {
 }

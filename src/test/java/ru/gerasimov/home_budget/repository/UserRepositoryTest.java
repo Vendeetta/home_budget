@@ -9,9 +9,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import ru.gerasimov.home_budget.TestContainerConfig;
 import ru.gerasimov.home_budget.model.Category;
+import ru.gerasimov.home_budget.model.Role;
 import ru.gerasimov.home_budget.model.User;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -28,21 +28,23 @@ class UserRepositoryTest {
 
     @Autowired
     UserRepository repository;
-    @Autowired CategoryRepository categoryRepository;
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @Test
     @DisplayName("Тест корректного сохранения и получение сущностей User из БД.")
     @Transactional
     void repositoryTest() {
         //given
-        Category category1 = new Category(null, 200, "test2");
-        User user1 = new User(null, "test", "pass", "email@email.ru", Set.of(category1));
+        User user1 = new User(null, "pass", "email1@email.ru", null, Role.USER);
+        Category category1 = new Category(null, 200, "test2", user1);
+        user1.setCategory(Set.of(category1));
         int entitiesInCategoryAtStart = categoryRepository.findAll().size();
         //when Сохраняем сущность.
         repository.saveAll(List.of(user1));
         //then Ожидаем получить из БД сущность User, также новую сохраненную сущность Category сущности.
-        assertEquals(1, repository.findAll().size());
-        assertEquals(entitiesInCategoryAtStart+1, categoryRepository.findAll().size());
+        assertEquals(user1, repository.findById(user1.getUserId()).orElse(null));
+        assertEquals(entitiesInCategoryAtStart + 1, categoryRepository.findAll().size());
         assertTrue(repository.findById(user1.getUserId())
                 .get()
                 .getCategory()

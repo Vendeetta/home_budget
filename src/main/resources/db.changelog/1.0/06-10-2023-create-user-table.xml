@@ -12,14 +12,14 @@
                     defaultValueSequenceNext="user_id_seq">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="username" type="text" remarks="Имя пользователя">
-                <constraints nullable="false"/>
-            </column>
             <column name="password" type="text" remarks="Пароль пользователя">
                 <constraints nullable="false"/>
             </column>
             <column name="email" type="text" remarks="Электронная почта пользователя">
                 <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="role" type="text" remarks="Роль пользователя">
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>

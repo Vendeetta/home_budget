@@ -1,6 +1,9 @@
 package ru.gerasimov.home_budget.mapper;
 
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.Named;
 import ru.gerasimov.home_budget.dto.CategoryDto;
 import ru.gerasimov.home_budget.model.Category;
 import ru.gerasimov.home_budget.model.User;
