@@ -23,7 +23,7 @@ public class JwtService {
     /**
      * Секретный ключ для генерации и чтения JWT токена.
      */
-    private final static String KEY = "dfsu428762i3hesa9d8u1lskaduy01hda0`ph`!lhe2q3iq6r4oL&U^%(kd";
+    private final static String KEY = "dfsu428762i3hesa9d8u1lskaduy01hda0phlhe2q3iq6r4oLUsdfsdf8743jfdkkd";
 
     /**
      * Извлечение username из JWT токена.
@@ -75,14 +75,14 @@ public class JwtService {
                 .setClaims(claims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 30))
                 .signWith(getSecretKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
-    public boolean isTokenValid (String token, UserDetails userDetails) {
+    public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = userDetails.getUsername();
-        return username.equals(extractUsername(token)) && isTokenExpired(token);
+        return username.equals(extractUsername(token)) && !isTokenExpired(token);
     }
 
     private boolean isTokenExpired(String token) {
